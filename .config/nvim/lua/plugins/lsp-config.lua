@@ -35,6 +35,18 @@ local on_attach = function(client, bufnr)
 	--	end
 end
 
+local on_attach_lua = function(client, bufnr)
+	if vim.bo[bufnr].filetype == "lua" then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({ bufnr = bufnr })
+			end,
+		})
+	end
+end
+
+
 vim.diagnostic.config({
 	update_in_insert = false,
 	float = {
@@ -118,7 +130,7 @@ return {
 			vim.lsp.config('pyright', { on_attach = on_attach })
 			vim.lsp.enable('pyright')
 
-			vim.lsp.config('lua_ls', { on_attach = on_attach })
+			vim.lsp.config('lua_ls', { on_attach = on_attach_lua })
 			vim.lsp.enable('lua_ls')
 
 			vim.lsp.config('clangd',
