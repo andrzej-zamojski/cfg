@@ -18,7 +18,7 @@ return {
 	opts = {
 		highlight = { enable = true },
 		indent = { enable = true },
-		ensure_installed = { "lua", "vim", "vimdoc", "python", "markdown", "clangd" },
+		ensure_installed = { "lua", "vim", "vimdoc", "python", "markdown", "c", "cpp" },
 	},
 	config = function(_, opts)
 		-- Use pcall because 'nvim-treesitter.configs' is deprecated/renamed in some versions
